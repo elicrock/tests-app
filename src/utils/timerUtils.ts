@@ -27,5 +27,6 @@ export function clearTimer(): void {
   if (timerInterval) {
     clearInterval(timerInterval);
     timerInterval = null;
+    timer = 300;
   }
 }
