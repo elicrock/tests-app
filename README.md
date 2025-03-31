@@ -23,5 +23,5 @@ npm install или npm i
 npm run dev
 ```
 
-## Ссылка проект:
+## Ссылка на проект:
 * https://elicrock.github.io/tests-app/
