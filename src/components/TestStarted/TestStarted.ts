@@ -117,6 +117,10 @@ export class TestStarted {
       if (timerElement) {
         timerElement.textContent = formattedTime;
       }
+
+      if (formattedTime === '00:00:00') {
+        this.finishTest();
+      }
     });
   }
 
