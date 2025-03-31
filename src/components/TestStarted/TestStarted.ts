@@ -4,21 +4,18 @@ import { Test } from '../../types';
 import { HomePage } from '../../pages/HomePage/HomePage';
 import { TestResults } from '../TestResults/TestResults';
 import { Modal } from '../Modal/Modal';
-
+import { startTimer, clearTimer } from '../../utils/timerUtils';
 
 export class TestStarted {
   private container: HTMLElement;
   private testId: number;
   private test: Test | undefined;
   private answers: Record<string, { answerId: number; answerText: string }> = {};
-  private timer: number;
-  private timerInterval: NodeJS.Timeout | null = null;
 
   constructor(container: HTMLElement, testId: number) {
     this.container = container;
     this.testId = testId;
     this.test = testData.find(test => test.id === testId);
-    this.timer = 300;
     this.render();
     this.startTimer();
   }
@@ -70,6 +67,7 @@ export class TestStarted {
     `;
 
     this.addEventListeners();
+    this.startTimer();
   }
 
   private addEventListeners(): void {
@@ -114,29 +112,12 @@ export class TestStarted {
   }
 
   private startTimer(): void {
-    if (this.timerInterval) {
-      clearInterval(this.timerInterval);
-    }
-
-
-    this.timerInterval = setInterval(() => {
-      this.timer--;
-
-      const hours = Math.floor(this.timer / 3600);
-      const minutes = Math.floor((this.timer % 3600) / 60);
-      const seconds = this.timer % 60;
-
-      const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes
-        .toString()
-        .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
+    startTimer((formattedTime: string) => {
       const timerElement = this.container.querySelector('.test-started__timer');
-      if (timerElement) timerElement.textContent = formattedTime;
-
-      if (this.timer <= 0) {
-        this.finishTest();
+      if (timerElement) {
+        timerElement.textContent = formattedTime;
       }
-    }, 1000);
+    });
   }
 
   private updateProgress(): string {
@@ -160,7 +141,7 @@ export class TestStarted {
   }
 
   private finishTest(): void {
-    if (this.timerInterval) clearInterval(this.timerInterval);
+    clearTimer();
 
     this.saveAnswers();
 
@@ -168,7 +149,7 @@ export class TestStarted {
   }
 
   private exitTest(): void {
-    if (this.timerInterval) clearInterval(this.timerInterval);
+    clearTimer();
     new HomePage(this.container);
     this.closeModal();
   }
