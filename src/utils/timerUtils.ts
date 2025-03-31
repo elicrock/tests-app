@@ -1,5 +1,5 @@
 let timerInterval: NodeJS.Timeout | null = null;
-let timer: number = 10;
+let timer: number = 300;
 
 export function startTimer(callback: (formattedTime: string) => void): void {
   if (timerInterval) return;
