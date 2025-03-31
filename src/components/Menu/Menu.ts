@@ -1,5 +1,6 @@
 import './Menu.scss';
 import { testData } from "../../utils/constants/data";
+import { clearTimer } from '../../utils/timerUtils';
 
 export class Menu {
   private container: HTMLElement;
@@ -52,6 +53,7 @@ export class Menu {
         const testId = parseInt((item as HTMLElement).dataset.testId!);
         this.setActiveTest(testId);
         this.onTestSelectCallback(testId);
+        clearTimer();
       }
     });
   }
