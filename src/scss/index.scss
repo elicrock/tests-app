@@ -1,0 +1,22 @@
+@use '../vendor/normalize.scss';
+@import url('../vendor/fonts/fonts.scss');
+
+:root {
+  --background-color: #FAFAFA;
+  --primary-color-text: #263238;
+
+  font-family: 'Nunito', sans-serif;
+
+  color: var(--primary-color-text);
+  background-color: var(--background-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+
