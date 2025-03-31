@@ -116,4 +116,4 @@ var q=Object.defineProperty;var g=(a,t,e)=>t in a?q(a,t,{enumerable:!0,configura
         <section class="content-container"></section>
       </main>
     `,this.contentContainer=this.rootElement.querySelector(".content-container")}handleRoute(){const t=this.getTestIdFromUrl();this.contentContainer.innerHTML="",t!==null?new f(this.contentContainer,t,this.menu):new m(this.contentContainer)}handleTestSelect(t){history.pushState({},"",`?test=${t}`),this.handleRoute()}getTestIdFromUrl(){const e=new URLSearchParams(window.location.search).get("test");return e?parseInt(e,10):null}}new I;
-//# sourceMappingURL=index-FVnlCA8C.js.map
+//# sourceMappingURL=index-2b_8qgaF.js.map
